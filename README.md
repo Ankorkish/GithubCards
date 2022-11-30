@@ -1,2 +1,2 @@
 # GithubCards
- Coll card with git hub API
+ Cool card with git hub API
