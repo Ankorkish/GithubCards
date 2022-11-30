@@ -1,0 +1,127 @@
+:root{
+    --card-scale:100;
+    --git-light-color:#161B22;
+    --git-dark-color:#010409;
+    --git-font-color:#C6D1D9;
+    --border-color-1:#5ddcff;
+    --border-color-2: #3c67e3 43%;
+    --border-color-3: #4e00c2;
+    --card-height:65vh;
+}
+@property --rotate{
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+content{
+    display: flex;
+    justify-content: center;
+    color:var(--git-font-color);
+    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+    gap: 80px;
+}
+
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: var(--git-light-color);
+    overflow-y: hidden
+}
+
+.card{
+    padding: 20px 20px;
+    box-sizing: border-box;
+    gap:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: calc(var(--card-scale) * 3.5px);
+    width: calc(var(--card-scale) * 2.25px);
+    background-color: var(--git-dark-color);
+    border-radius: 6px;
+    position: relative;
+}
+
+.card::before{
+    opacity: 0;
+     content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--rotate), var(--border-color-1), var(--border-color-2) , var(--border-color-3));
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+  transition: opacity 0.2s;
+}
+
+.card::after{
+    opacity: 0;
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height)/6));
+    background-image: linear-gradient(var(--rotate), var(--border-color-1), var(--border-color-2) , var(--border-color-3));
+    opacity: 0.20;
+    transition: opacity 0.5s;
+    animation: spin 2.5s linear infinite;
+  }
+.card:hover::after,
+.card:hover::before{
+    opacity: 1;
+}
+  @keyframes spin {
+    0%{
+        --rotate: 0deg;
+    }
+    100%{
+        --rotate: 360deg;
+    }
+  }
+
+.card img{
+    width: 70px;
+    height:  70px;
+    border-radius: 50%;
+}
+
+.card > .div-image{
+    box-sizing: border-box; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card > .name{
+    font-weight: 900;
+    font-size: 24px;
+    color: white;
+}
+
+
+.card > .repos{
+    width:100%;
+    overflow-wrap: normal;
+}
+.card > .repos > a{
+    text-decoration: none;
+    color: var(--git-font-color);
+}
+.card > .date-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    flex-grow: 1;
+}
+.not-main-text{
+    color:#848c91;
+}
